@@ -27,6 +27,11 @@ div.subjects-page {
   padding-right: 0px;
 }
 
+div.image-things-page {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 div.thing-info span.id {
   display: none;
 }

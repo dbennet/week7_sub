@@ -6,7 +6,7 @@ class ThingImagesController < ApplicationController
   before_action :get_image, only: [:image_things]
   before_action :get_thing_image, only: [:update, :destroy]
   before_action :authenticate_user!, only: [:create, :update, :destroy]
-  after_action :verify_authorized, except: [:subjects]
+  after_action :verify_authorized, except: [:subjects,:get_things]
   #after_action :verify_policy_scoped, only: [:linkable_things]
   before_action :origin, only: [:subjects]
 
@@ -30,6 +30,23 @@ class ThingImagesController < ApplicationController
     @things=ThingPolicy::Scope.new(current_user,@things).user_roles(true,false)
     @things=ThingPolicy.merge(@things)
     render "things/index"
+  end
+
+
+  def get_things
+    if params[:image_id]
+       thingimages = ThingImage.where(:image_id => params[:image_id])
+       @things = []
+       thingimages.map {|ti| @things.push(ti.thing) }
+       if @things
+         @things
+         render "things/index"
+       else
+         render :nothing => true
+       end
+     else
+       render :nothing => true
+     end
   end
 
   def subjects
