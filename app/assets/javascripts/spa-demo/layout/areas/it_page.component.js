@@ -11,7 +11,7 @@
  			controller: ITAreaController,
  			transclude: true,
  			require: {
- 				areasController: "^^sdItPage"
+ 				iTPageController: "^^sdItPage"
  			}
  		})
  		.directive("sdItPageSide", [function(){
@@ -59,7 +59,8 @@
  		//////////////////////////
  		function showThings(check) {
  			vm.show = check;
- 			vm.PageController.hidden = check ? false : true;
+ 			vm.iTPageController.hidden = check ? false : true;
+
  		}
  	}
  	AreasSideController.$inject = [];

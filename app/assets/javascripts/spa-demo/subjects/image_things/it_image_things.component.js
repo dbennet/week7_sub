@@ -7,22 +7,21 @@
        templateUrl: itThingsTemplateUrl,
        controller: sdItThingsController,
        require: {
-         areaController: "^^sdITArea",
-         tabsController: "^^sdITTabs"
+         iTAreaController: "^^sdItArea",
+         tabsController: "^^sdItTabs"
        }
      });
-
 
    itThingsTemplateUrl.$inject = ["spa-demo.config.APP_CONFIG"];
    function itThingsTemplateUrl(APP_CONFIG) {
      return APP_CONFIG.it_things_html;
    }   
-   
+
    sdItThingsController.$inject = ["$scope","$q","spa-demo.subjects.ITImages"]
    function sdItThingsController($scope,$q,imageThings) {
      var vm = this;
      vm.$onInit = function() {
-       console.log("sdthingsController",$scope);
+       console.log("ccccccccc sdthingsController",$scope);
      }
      vm.$postLink = function() {
        $scope.$watch(
@@ -31,9 +30,9 @@
            vm.things = things;
            vm.tabsController.refreshThings();
            if(typeof vm.things === "undefined" || vm.things.length === 0) {
-             vm.areaController.showThings(false);
+             vm.iTAreaController.showThings(false);
            } else {
-             vm.areaController.showThings(true);
+             vm.iTAreaController.showThings(true);
            }
          }
        );
